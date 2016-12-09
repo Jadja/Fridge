@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `fridge`;
 CREATE TABLE `fridge` (
   `ID` int(11) NOT NULL,
   `Add_date` varchar(45) NOT NULL,
-  `Product` int(11) NOT NULL,
+  `Product` int(13) NOT NULL,
   PRIMARY KEY (`ID`,`Add_date`,`Product`),
   KEY `product_id_idx` (`Product`),
   CONSTRAINT `product_id` FOREIGN KEY (`Product`) REFERENCES `product` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -75,7 +75,7 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
-  `ID` int(11) NOT NULL,
+  `ID` int(13) NOT NULL,
   `Name` varchar(45) DEFAULT NULL,
   `Expiration_time` date DEFAULT NULL,
   `Description` varchar(45) DEFAULT NULL,
