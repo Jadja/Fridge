@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `fifo db` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `fifo db`;
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: fifo db
 -- ------------------------------------------------------
--- Server version	5.7.10-log
+-- Server version	5.6.25-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,7 +25,8 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `Name` varchar(45) NOT NULL,
   `General_exp_date` date DEFAULT NULL,
-  PRIMARY KEY (`Name`)
+  `ID` int(11) NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,7 +49,8 @@ DROP TABLE IF EXISTS `fridge`;
 CREATE TABLE `fridge` (
   `ID` int(11) NOT NULL,
   `Add_date` varchar(45) NOT NULL,
-  PRIMARY KEY (`ID`,`Add_date`)
+  PRIMARY KEY (`ID`,`Add_date`),
+  CONSTRAINT `ProductID` FOREIGN KEY (`ID`) REFERENCES `product` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -75,9 +75,11 @@ CREATE TABLE `product` (
   `Name` varchar(45) DEFAULT NULL,
   `Expiration_time` date DEFAULT NULL,
   `Description` varchar(45) DEFAULT NULL,
-  `Category` varchar(45) DEFAULT NULL,
+  `CategoryID` int(11) DEFAULT NULL,
   `Date_bought` date DEFAULT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `category_idx` (`CategoryID`),
+  CONSTRAINT `category` FOREIGN KEY (`CategoryID`) REFERENCES `category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,4 +101,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-09 14:06:19
+-- Dump completed on 2016-12-09 14:28:12
