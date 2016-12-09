@@ -19,12 +19,12 @@ function SelectAllFromTable($TableName, $WhereArray, $Options) {
 	$Where = '';
 	if ($WhereArray) {
 		$Where = 'WHERE ';
-		foreach($WhereArray as $Field => $Value) {
+		foreach ($WhereArray as $Field => $Value) {
 			$Where .= $Field . ' = ' . $Value . ' AND ';
 		}
 		$Where = substr($Where, 0, -4);
 	}
-	$Result = $Databse->query("SELECT * FROM $TableName $Where $Options");
+	$Result = $Database->query("SELECT * FROM $TableName $Where $Options");
 	if (!$Result || $Result->rowCount() == 0) {
 		return false;
 	}

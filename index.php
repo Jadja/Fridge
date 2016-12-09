@@ -13,7 +13,11 @@ require_once('init.php');
     </head>
     <body>
         <main>
-            <p>hello</p>
+            <p>hello
+            <?php
+            echo SelectFirstFromTable('category', '', '')['Name'];
+            ?>
+            </p>
         </main>
     </body>
 </html>
