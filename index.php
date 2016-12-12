@@ -6,16 +6,25 @@ require_once('init.php');
 <html>
     <head>
         <title>Fridge Thing</title>
-        <meta charset="windows-1252">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="favicon.ico">
-        <link rel='stylesheet' href="assets/css/style.css" type="text/css" <!--media='screen and (min-width: 0px) and (max-width: 1700px)'--> />
+        <meta charset='utf-8'>
+        <link rel='shortcut icon' href='favicon.ico'>
+        <link rel='stylesheet' href='assets/css/style.css' type='text/css' />
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+        <script src='assets/javascript/nav.js'></script>
     </head>
     <body>
         <main>
-            <p>hello
+            <nav>
+                <ul>
+                    <li id='nav-0'>Home</li>
+                </ul>
+            </nav>
+            <p>
             <?php
-            echo SelectFirstFromTable('category', '', '')['Name'];
+            $test = $db->SelectAllFromTable('category', '', '');
+            for ($i = 0; $i < count($test); $i++) {
+                echo $test[$i]['Name'] . '<br />';
+            }
             ?>
             </p>
         </main>
