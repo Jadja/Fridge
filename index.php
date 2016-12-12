@@ -16,7 +16,6 @@ require_once('init.php');
         <main>
             <nav>
                 <ul>
-                    <li id='nav-0'>Home</li>
                 </ul>
             </nav>
             <p>

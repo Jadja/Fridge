@@ -1,6 +1,4 @@
-
-
-var navCount = 1;
+var navCount = 0;
 
 function nav_SelectPage(title, navId) {
 	title = title.toLowerCase();
@@ -15,14 +13,20 @@ function nav_SelectPage(title, navId) {
 
 function AddPage(name) {
 	$('nav ul').append('<li id="nav-' + navCount + '">' + name + '</li>');
+	$('main').append('<div id="page-' + navCount + '">' + name + '</li>');
 	navCount++;
 }
 var nav_currentPage = '';
 var nav_currentNavId = '';
 
 $(document).ready(function() {
+	AddPage('Home');
 	AddPage('test');
 	AddPage('test');
 	AddPage('test');
 	AddPage('test');
+
+	for (var i = 1; i < navCount; i++) {
+		$('main #page-' + i).hide();
+	}
 });
