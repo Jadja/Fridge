@@ -18,7 +18,6 @@ require_once('init.php');
                 <ul>
                 </ul>
             </nav>
-<<<<<<< HEAD
 			<div id="product" style="background-color:blue">
 				<h1>Category</h1>
 			</div>
@@ -72,7 +71,6 @@ require_once('init.php');
 			<div id="product" style="background-color:blue">
 				<h1>Category</h1>
 			</div>
-=======
             <p>
             <?php
             /*$test = $db->SelectAllFromTable('category', '', '');
@@ -81,7 +79,6 @@ require_once('init.php');
             }*/
             ?>
             </p>
->>>>>>> origin/master
         </main>
     </body>
 </html>
