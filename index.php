@@ -20,10 +20,10 @@ require_once('init.php');
             </nav>
             <p>
             <?php
-            $test = $db->SelectAllFromTable('category', '', '');
+            /*$test = $db->SelectAllFromTable('category', '', '');
             for ($i = 0; $i < count($test); $i++) {
-                echo $test[$i]['Name'] . '<br />';
-            }
+                echo $test[$i]->Name . '<br />';
+            }*/
             ?>
             </p>
         </main>
