@@ -2,14 +2,6 @@
 require_once('config.php');
 
 /*
-	public function GetAllRowsInTable($TableName) {
-		$Result = $this->connection->query("SELECT * FROM $TableName");
-		if (!$Result || $Result->rowCount() == 0) {
-			return false;
-		}
-		return $Result->fetchAll(PDO::FETCH_ASSOC);
-	}
-
 	public function GetLastRowsInTable($TableName, $Limit) {
 		$Result = $this->connection->query("SELECT * FROM $TableName ORDER BY ID DESC LIMIT 0, $Limit");
 		if (!$Result || $Result->rowCount() == 0) {
@@ -18,46 +10,31 @@ require_once('config.php');
 		return $Result->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function InsertRowIntoTable($TableName, $Values) {
-		if (!$Values) {
-			return;
-		}
-		$Query = "INSERT INTO $TableName(";
-		$ValuesString = '';
-		foreach ($Values as $Field => $Value) {
-			$Query .= $Field . ',';
-			$ValuesString .= $Value . ',';
-		}
-		$Query = substr($Query, 0, -1);
-		$ValuesString = substr($ValuesString, 0, -1);
-		$Query .= ") VALUES($ValuesString)";
-		$this->connection->query($Query);
-	}
-
-	public function UpdateRowInTable($TableName, $Where, $SetValues) {
-		$Query = "UPDATE $TableName SET ";
-		foreach ($SetValues as $Name => $Value) {
-			$Query .= "$Name = $Value,";
-		}
-		$Query = substr($Query, 0, -1) . " $Where";
-		$this->connection->query($Query);
-	}
-
-	public function DeleteRowFromTable($TableName, $Where) {
-		$this->connection->query("DELETE FROM $TableName $Where");
-	}
-
-	public function SelectByID($TableName, $ID) {
-		return $this->SelectFirstFromTable($TableName, array('ID' => intval($ID)), '');
-	}
 */
 
 function console_log($data) {
-	echo '<script>console.log(' . json_encode( $data ) . ')</script>';
+	echo '<script>console.log(' . json_encode($data) . ')</script>';
 }
 
 class Database {
 	private $_Connection;
+
+	//insert doesn't work yet :/
+	public function InsertRowIntoTable($tableName, $values) {
+		if (!$values) {
+			return;
+		}
+		$sql = "INSERT INTO $tableName(";
+		$valuesString = '';
+		foreach ($values as $field => $value) {
+			$sql .= $field . ',';
+			$valuesString .= $value . ',';
+		}
+		$sql = substr($sql, 0, -1);
+		$valuesString = substr($valuesString, 0, -1);
+		$sql .= ") VALUES($valuesString)";
+		$this->_Connection->query($sql);
+	}
 
 	public function SelectAllFromTable($tableName, $whereArray, $options) {
 		$where = '';
@@ -72,7 +49,7 @@ class Database {
 		if (!$result || $result->rowCount() == 0) {
 			return false;
 		}
-		return $result->fetchAll(PDO::FETCH_ASSOC);
+		return $result->fetchAll(PDO::FETCH_OBJ);
 	}
 
 	public function SelectFirstFromTable($tableName, $whereArray, $options) {
@@ -81,6 +58,23 @@ class Database {
 			return false;
 		}
 		return $rows[0];
+	}
+
+	public function SelectByID($tableName, $id) {
+		return $this->SelectFirstFromTable($tableName, array('ID' => intval($id)), '');
+	}
+
+	public function UpdateRowInTable($tableName, $where, $setValues) {
+		$Query = "UPDATE $tableName SET ";
+		foreach ($setValues as $name => $value) {
+			$Query .= "$name = $value,";
+		}
+		$Query = substr($Query, 0, -1) . " $where";
+		$this->_Connection->query($Query);
+	}
+
+	public function DeleteRowFromTable($tableName, $where) {
+		$this->_Connection->query("DELETE FROM $tableName $where");
 	}
 	
 	public function __construct() {
