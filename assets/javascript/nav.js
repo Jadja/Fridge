@@ -20,11 +20,8 @@ var nav_currentPage = '';
 var nav_currentNavId = '';
 
 $(document).ready(function() {
-	AddPage('Home');
-	AddPage('test');
-	AddPage('test');
-	AddPage('test');
-	AddPage('test');
+	AddPage('My Products');
+	AddPage('All Prpducts');
 
 	for (var i = 1; i < navCount; i++) {
 		$('main #page-' + i).hide();
