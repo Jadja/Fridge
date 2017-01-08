@@ -22,24 +22,13 @@ require_once('init.php');
 				$test = $db->SelectAllFromTable('category', '', '');
 				for ($i = 0; $i < count($test); $i++) 
 				{
-					echo '<div id="product">';
-					echo '<h2>';
-					echo $test[$i]->Name;
-					echo '</h2>';
-					echo '</div>';
-					if ($test[$i]->Name == '')
+					echo '<div id="category"><h2>' . $test[$i]->Name . '</h2></div>';
+					$products = $db->SelectAllFromTable('fridge', '', 'JOIN product ON fridge.Product=product.ID WHERE ' . $test[$i]->ID . '=product.Category');
+					if(!empty($products))
 					{
-						$products = $db->SelectAllFromTable('fridge', '', 'JOIN product ON fridge.Product=product.ID WHERE ' . $test[$i]->ID . '=product.Category');
 						for ($j = 0; $j < count($products); $j++) 
 						{
-							echo '<div id="product">';
-							echo '<h2>';
-							echo $products[$j]->Name;
-							echo '</h2>';
-							echo '<p>Category: ';
-							echo $test[$i]->Name;
-							echo '</p>';
-							echo '</div>';
+							echo '<div id="product"><h2>' . $products[$j]->Name . '</h2><p>Category: ' . $test[$i]->Name . '</p></div>';
 						}
 					}
 				}
