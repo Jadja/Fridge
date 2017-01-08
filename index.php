@@ -18,28 +18,32 @@ require_once('init.php');
                 <ul>
                 </ul>
             </nav>
-			<div id="product" style="background-color:blue">
-				<h2>
-				<?php
+			<?php
 				$test = $db->SelectAllFromTable('category', '', '');
 				for ($i = 0; $i < count($test); $i++) 
 				{
-					echo $test[0]->Name . '<br />';
+					echo '<div id="product">';
+					echo '<h2>';
+					echo $test[$i]->Name;
+					echo '</h2>';
+					echo '</div>';
+					if ($test[$i]->Name == '')
+					{
+						$products = $db->SelectAllFromTable('fridge', '', 'JOIN product ON fridge.Product=product.ID WHERE ' . $test[$i]->ID . '=product.Category');
+						for ($j = 0; $j < count($products); $j++) 
+						{
+							echo '<div id="product">';
+							echo '<h2>';
+							echo $products[$j]->Name;
+							echo '</h2>';
+							echo '<p>Category: ';
+							echo $test[$i]->Name;
+							echo '</p>';
+							echo '</div>';
+						}
+					}
 				}
 				?>
-				</h2>
-			</div>
-			<div id="product" style="background-color:red">
-				<h2>
-				<?php
-				$test = $db->SelectAllFromTable('fridge', '', '');
-				for ($i = 0; $i < count($test); $i++) 
-				{
-					echo $test[0]->ID . '<br />';
-				}
-				?>
-				</h2>
-			</div>
         </main>
     </body>
 </html>

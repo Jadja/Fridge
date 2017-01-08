@@ -21,7 +21,7 @@ var nav_currentNavId = '';
 
 $(document).ready(function() {
 	AddPage('My Products');
-	AddPage('All Prpducts');
+	AddPage('All Products');
 
 	for (var i = 1; i < navCount; i++) {
 		$('main #page-' + i).hide();
