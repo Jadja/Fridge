@@ -22,7 +22,7 @@ require_once('init.php');
 				$test = $db->SelectAllFromTable('category', '', '');
 				for ($i = 0; $i < count($test); $i++) 
 				{
-					$products = $db->SelectAllFromTable('fridge', '', 'JOIN product ON fridge.Product=product.ID WHERE ' . $test[$i]->ID . '=product.Category');
+					$products = $db->SelectAllFromTable('product', '', 'WHERE Category = ' . $test[$i]->ID);
 					if(empty($products))
 					{
 						echo '<div id="category"><h1>' . ' (' . $test[$i]->ID . ') ' . $test[$i]->Name . '</h1><h2>0 Items</h2></div>';
@@ -35,31 +35,14 @@ require_once('init.php');
 					{
 						for ($j = 0; $j < count($products); $j++) 
 						{
-							$product = $db->SelectAllFromTable('product', '', 'JOIN fridge ON product.ID=fridge.Product WHERE ' . $products[$j]->Product . '=product.ID');
-							
 							$description = $products[$j]->Description;
 							if(strlen($products[$j]->Description) > 50)
 							{
 							$description = substr($description, 0, 50);
 							$description .= '...';
 							}
-							
-							$now = time();
-							$date = strtotime($products[$j]->Add_date);
-							
-							$diff = $now - $date;
-							
-							$timeleft = $product[0]->Expiration_time - (floor($diff / (60 * 60 * 24)));
-							if($timeleft < 0)
-							{
-								$timeleft = 'EXPIRED';
-							}
-							else
-							{
-								$timeleft = 'Expires in: ' . $timeleft . ' days';
-							}
-							
-							echo '<div id="product"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+								
+							echo '<div id="product"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>Expires in: ' . $products[$j]->Expiration_time . ' days</h3></div></div>';
 						}
 					}
 				}

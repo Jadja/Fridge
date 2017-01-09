@@ -17,7 +17,7 @@ nav {
 	float: left;
 	width: 900px;
 	height: 20px;
-	background: red;
+	background: black;
 }
 
 nav ul {
@@ -27,15 +27,16 @@ nav ul {
 
 nav ul li {
 	float: left;
-	width: 100px;
+	width: 446px;
 	height: 20px;
 	background: green;
+	border: 2px solid black;
 }
 
 #product	{
 	background-color: #439639;
 	width: 99%;
-	height: 75px;
+	height: 50px;
 	border: 5px solid black;
 	border-radius: 5px;
 	float: left;
@@ -45,15 +46,23 @@ nav ul li {
 #category	{
 	background-color: #eaaa00;
 	width: 99%;
-	height: 75px;
+	height: 50px;
 	border: 5px solid black;
 	border-radius: 5px;
 	float: left;
 	margin-top: 2px;
+}
+#sub	{
+	width: 50%;
+	height: 100%;
+	float: left;
 }
 h1	{
 	font: 25px arial;
 }
 h2	{
 	font: 20px arial;
+}
+h3	{
+	font: 35px arial;
 }
