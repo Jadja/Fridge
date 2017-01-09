@@ -22,14 +22,14 @@ require_once('init.php');
 				$test = $db->SelectAllFromTable('category', '', '');
 				for ($i = 0; $i < count($test); $i++) 
 				{
-					$products = $db->SelectAllFromTable('product', '', 'WHERE Category = ' . $test[$i]->ID);
+					$products = $db->SelectAllFromTable('product', '', "WHERE Category='" . $test[$i]->Name . "'");
 					if(empty($products))
 					{
-						echo '<div id="category"><h1>' . ' (' . $test[$i]->ID . ') ' . $test[$i]->Name . '</h1><h2>0 Items</h2></div>';
+						echo '<div id="category"><h1>' . $test[$i]->Name . '</h1><h2>0 Items</h2></div>';
 					}
 					else
 					{
-						echo '<div id="category"><div id="sub"><h1>' . ' (' . $test[$i]->ID . ') ' . $test[$i]->Name . '</h1><h2>' . count($products) . ' Items</h2></div></div>';
+						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>' . count($products) . ' Items</h2></div></div>';
 					}
 					if(!empty($products))
 					{
@@ -42,7 +42,7 @@ require_once('init.php');
 							$description .= '...';
 							}
 								
-							echo '<div id="product"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>Expires in: ' . $products[$j]->Expiration_time . ' days</h3></div></div>';
+							echo '<div id="product"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>Expiration Time: ' . $products[$j]->Expiration_time . ' Days</h3></div></div>';
 						}
 					}
 				}
