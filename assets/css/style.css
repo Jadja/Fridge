@@ -36,9 +36,10 @@ nav ul li a {
     line-height: 1.5em;
     color: #333333;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 22px;
     font-weight: bold;
     display: block;
+	padding-left: 152.5px;
 }
 
 #product	{
