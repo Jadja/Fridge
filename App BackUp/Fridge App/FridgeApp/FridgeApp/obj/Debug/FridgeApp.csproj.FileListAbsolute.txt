@@ -1,0 +1,11 @@
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\bin\Debug\FridgeApp.exe.config
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\bin\Debug\FridgeApp.exe
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\bin\Debug\FridgeApp.pdb
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.Fifoform.resources
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.csproj.GenerateResource.Cache
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.exe
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.pdb
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.csprojResolveAssemblyReference.cache
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.Properties.Resources.resources
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\bin\Debug\MySql.Data.dll
+C:\Users\Eigenaar\Source\Repos\Fridge App\FridgeApp\FridgeApp\obj\Debug\FridgeApp.Addingform.resources

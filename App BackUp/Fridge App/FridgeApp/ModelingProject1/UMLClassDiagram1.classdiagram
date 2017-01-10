@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a34d4489-1efd-436e-9c02-bf4ae8bb548b" name="UMLClassDiagram1" linkedPackageId="318c4a8a-4c34-455e-bf9c-5ac2ea466d67" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="70b5ebf1-60d1-4b36-9527-86f9cb7a954b">
+      <profileInstance Id="cdd4eea1-c87b-4980-b71e-afa22cd7f046" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="88169478-162f-4edb-8502-3b14041ef067">
+      <profileInstance Id="26bac229-9765-407f-88c1-515c8d1e1a84" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f554d961-58da-40cb-8cca-e466e3ee2b28" name="Addingform" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6fdcf13b-2d49-440d-9a4b-ee395b5998bf" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="36b99211-d0ab-4b66-ae6b-d16a2a850780" name="Fifoform" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="eff52c2f-036b-48d7-9a80-27d239cfb840" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="80dcb015-69a7-4cdd-8905-2ef2392dfa1b" name="DBconenction" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="cbe13a1f-970e-41b7-9c97-55920b578ced" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3ec51e5f-57df-44f7-90ab-4af70a18a6fb" name="DataManager" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f7950cda-457a-4a33-8c56-63e17cf90204" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="15281cb2-08a5-4cc3-81b8-fb165e5bae7d" name="Program" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="1677401f-be20-4565-90ee-1b3578250714" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="db419822-4f60-4cd0-91c1-bef97f6bf814" name="Config" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7903ddec-9157-46fd-b901-baa0ffcf7fee" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="318c4a8a-4c34-455e-bf9c-5ac2ea466d67" name="ModelingProject1">
+    <elementDefinition Id="fa0b0445-25cf-4707-97d3-d6b21a47829f" />
+  </package>
+</logicalClassDesignerModel>
