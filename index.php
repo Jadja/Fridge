@@ -10,12 +10,13 @@ require_once('init.php');
         <link rel='shortcut icon' href='favicon.ico'>
         <link rel='stylesheet' href='assets/css/style.css' type='text/css' />
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
-        <script src='assets/javascript/nav.js'></script>
     </head>
     <body>
         <main>
             <nav>
                 <ul>
+					<li><a href="index.php">My Products</a></li>
+					<li><a href="products.php">All Products</a></li>
                 </ul>
             </nav>
 			<?php
@@ -90,6 +91,7 @@ require_once('init.php');
 					}
 				}
 				?>
+				<div>'My Products'</li>
         </main>
     </body>
 </html>
