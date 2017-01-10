@@ -91,7 +91,7 @@ require_once('init.php');
 					}
 				}
 				?>
-				<div>'My Products'</li>
+				<div>My Products</div>
         </main>
     </body>
 </html>
