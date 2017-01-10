@@ -5,7 +5,7 @@ require_once('init.php');
 
 <html>
     <head>
-        <title>Food Thing</title>
+        <title>FiFo - My Products</title>
         <meta charset='utf-8'>
         <link rel='shortcut icon' href='favicon.ico'>
         <link rel='stylesheet' href='assets/css/style.css' type='text/css' />
@@ -68,22 +68,22 @@ require_once('init.php');
 							switch (ceil($divcolor))
 							{
 								case 0:
-									echo '<div id="product" style="background-color:red"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#FF4136"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 								case 1:
-									echo '<div id="product" style="background-color:orange"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#FF851B"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 								case 2:
-									echo '<div id="product" style="background-color:yellow"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#FFDC00"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 								case 3:
-									echo '<div id="product" style="background-color:lightgreen"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#01FF70"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 								case 4:
-									echo '<div id="product" style="background-color:green"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#2ECC40"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 								default:
-									echo '<div id="product" style="background-color:darkgreen"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
+									echo '<div id="product" style="background-color:#3D9970"><div id="sub"><h1>' . $products[$j]->Name . '</h1><p>' . $description . '</p></div><div id="sub"><h3>' . $timeleft . '</h3></div></div>';
 									break;
 							}
 							

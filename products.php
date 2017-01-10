@@ -5,7 +5,7 @@ require_once('init.php');
 
 <html>
     <head>
-        <title>Fridge Thing</title>
+        <title>FiFo - All Products</title>
         <meta charset='utf-8'>
         <link rel='shortcut icon' href='favicon.ico'>
         <link rel='stylesheet' href='assets/css/style.css' type='text/css' />

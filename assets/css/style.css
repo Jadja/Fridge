@@ -28,9 +28,17 @@ nav ul {
 nav ul li {
 	float: left;
 	width: 446px;
-	height: 20px;
 	background: green;
 	border: 2px solid black;
+}
+
+nav ul li a {
+    line-height: 1.5em;
+    color: #333333;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
 }
 
 #product	{
