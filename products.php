@@ -12,6 +12,7 @@ require_once('init.php');
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     </head>
     <body>
+	<div id="fixed"><p><a href="no_cat.php">NO CATEGORIES</a></p></div>
         <main>
             <nav>
                 <ul>

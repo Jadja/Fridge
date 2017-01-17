@@ -25,14 +25,6 @@ require_once('init.php');
 				for ($i = 0; $i < count($test); $i++) 
 				{
 					$products = $db->SelectAllFromTable('food', '', "JOIN product ON food.Product=product.ID WHERE product.Category='" . $test[$i]->Name . "'");
-					if(empty($products))
-					{
-						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>0 Items</h2></div></div>';
-					}
-					else
-					{
-						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>' . count($products) . ' Items</h2></div></div>';
-					}
 					if(!empty($products))
 					{
 						for ($j = 0; $j < count($products); $j++) 
