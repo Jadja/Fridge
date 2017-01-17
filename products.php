@@ -12,11 +12,11 @@ require_once('init.php');
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
     </head>
     <body>
-	<div id="fixed"><p><a href="no_cat.php">NO CATEGORIES</a></p></div>
         <main>
             <nav>
                 <ul>
 					<li><a href="index.php">My Products</a></li>
+					<li><a href="no_cat.php">No Category</a></li>
 					<li><a href="products.php">All Products</a></li>
                 </ul>
             </nav>

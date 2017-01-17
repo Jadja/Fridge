@@ -26,7 +26,7 @@ nav ul {
 
 nav ul li {
 	float: left;
-	width: 446px;
+	width: 296px;
 	background: green;
 	border: 2px solid black;
 }
@@ -38,7 +38,7 @@ nav ul li a {
     font-size: 22px;
     font-weight: bold;
     display: block;
-	padding-left: 152.5px;
+	padding-left: 90px;
 }
 
 #product	{
