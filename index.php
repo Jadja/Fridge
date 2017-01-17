@@ -24,14 +24,57 @@ require_once('init.php');
 				$test = $db->SelectAllFromTable('category', '', '');
 				for ($i = 0; $i < count($test); $i++) 
 				{
-					$products = $db->SelectAllFromTable('food', '', "JOIN product ON food.Product=product.ID WHERE product.Category='" . $test[$i]->Name . "'");
+					$products = $db->SelectAllFromTable('food', '', "JOIN product ON food.Product=product.ID WHERE product.Category='" . $test[$i]->Name . "' ORDER BY DATE_ADD(food.Add_date, INTERVAL product.Expiration_time DAY) asc");
 					if(empty($products))
 					{
 						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>0 Items</h2></div></div>';
 					}
 					else
 					{
-						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>' . count($products) . ' Items</h2></div></div>';
+						$ProductDivs = "";
+						for ($j = 0; $j < count($products); $j++)
+						{
+							$product = $db->SelectAllFromTable('product', '', 'JOIN food ON product.ID=food.Product WHERE ' . $products[$j]->Product . '=product.ID');
+							
+							$now = time();
+							$date = strtotime($products[$j]->Add_date);
+							
+							$diff = $now - $date;
+							
+							$timeleft = $product[0]->Expiration_time - (floor($diff / (60 * 60 * 24)));
+							$divcolor = ($timeleft) / 5;
+							if($divcolor < 0)
+							{
+								$divcolor = 0;
+							}
+							
+							switch (ceil($divcolor))
+							{
+								case 0:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#FF4136"></div>';
+									break;
+								case 1:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#FF851B"></div>';
+									break;
+								case 2:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#FFDC00"></div>';
+									break;
+								case 3:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#01FF70"></div>';
+									break;
+								case 4:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#2ECC40"></div>';
+									break;
+								default:
+									$ProductDivs .= '<div id="colordiv" style="background-color:#3D9970"></div>';
+									break;
+							}
+							if($j > 7)
+							{
+								$j = 99999;
+							}
+						}
+						echo '<div id="category"><div id="sub"><h1>' . $test[$i]->Name . '</h1><h2>' . count($products) . ' Items</h2></div><div id="sub">' . $ProductDivs . '</div></div>';
 					}
 					if(!empty($products))
 					{
