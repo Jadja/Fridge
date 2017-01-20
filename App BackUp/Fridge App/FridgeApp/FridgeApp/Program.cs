@@ -13,7 +13,7 @@ namespace FridgeApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Fifoform());
+            Application.Run(new FifoApp());
         }
     }
 }

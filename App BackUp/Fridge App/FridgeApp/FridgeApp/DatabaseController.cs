@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using FridgeApp.Entities;
@@ -10,11 +11,58 @@ namespace FridgeApp
     public class DatabaseController
     {
         public MySqlConnection Connection { get; set; }
+        
+        public DatabaseController()
+        {
+            Connection = null;
+        }
+        /// <summary>
+        /// Executes a non query (Insert/Update/Delete)
+        /// </summary>
+        /// <param name="sql">the query</param>
+        /// <param name="values">the values to use</param>
+        public void NonQuery(string sql, params string[] values)
+        {
+            //Only runs if its connected to the database
+            if (Connect())
+            {
+                //MySqlTransaction trans = Connection.BeginTransaction();
+                MySqlCommand cmd = new MySqlCommand(sql, Connection);
+                //cmd.Transaction = trans;
+                if (values != null && values.Length != 0)
+                {
+                    for (int i = 0; i < values.Length; i++)
+                    {
+                        cmd.Parameters.Add(new MySqlParameter("@val" + i, values[i]));
+                    }
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    //trans.Commit();
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    //trans.Rollback();
+                }
+                finally
+                {
+                    Close();
+                    Logger.GetInstance().Log("Successfully executed command.");
+                }
+            }
+        }
 
+        /// <summary>
+        /// Makes a connection with the database
+        /// </summary>
+        /// <returns></returns>
         private bool Connect()
         {
             try
             {
+                //Uses the config for the db name/server/password/username
                 Connection = new MySqlConnection(Config.GetConnectionString());
                 if (Connection != null && Connection.State == ConnectionState.Closed)
                 {
@@ -45,15 +93,23 @@ namespace FridgeApp
             return false;
         }
 
+        /// <summary>
+        /// Closes the connection with the database
+        /// </summary>
         private void Close()
         {
             if (IsConnected())
             {
                 Connection.Close();
+                Connection = null;
                 Logger.GetInstance().Log("Closed Connection");
             }
         }
 
+        /// <summary>
+        /// Checks if the the app is connected to the database
+        /// </summary>
+        /// <returns></returns>
         public bool IsConnected()
         {
             if (Connection != null && Connection.State == ConnectionState.Open)
@@ -63,26 +119,32 @@ namespace FridgeApp
             return false;
         }
 
+        /// <summary>
+        /// Gets the products from the 'product' table
+        /// </summary>
+        /// <returns></returns>
         public List<Product> GetProducts()
         {
             List<Product> products = new List<Product>();
             try
             {
+                //Connect to database
                 Connect();
-
+                
                 string getString = @"SELECT * FROM product";
                 MySqlCommand cmd = new MySqlCommand(getString, Connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
                 while (dataReader.Read())
                 {
+                    //Makes a product of each row in the mysql table and adds it to the list of existing products
                     Product product = new Product
                     {
-                        ID = dataReader.GetChar("ID"),
-                        Name = dataReader.GetString("Naam"),
-                        Expiration_time = dataReader.GetDateTime("Geboortedatum"),
-                        Description = dataReader.GetString("Telefoon"),
-                        Category = dataReader.GetString("Telefoon")
+                        ID = dataReader.GetString("ID"),
+                        Name = dataReader.GetString("Name"),
+                        Expiration_time = dataReader.GetInt32("Expiration_time"),
+                        Description = dataReader.GetString("Description"),
+                        Category = dataReader.GetString("Category")
                     };
                     products.Add(product);
                 }
@@ -99,11 +161,16 @@ namespace FridgeApp
             return products;
         }
 
+        /// <summary>
+        /// Gets the categories from the 'category' table
+        /// </summary>
+        /// <returns></returns>
         public List<Category> GetCategories()
         {
             List<Category> categories = new List<Category>();
             try
             {
+                //Connect to database
                 Connect();
 
                 string getString = @"SELECT * FROM category";
@@ -112,10 +179,11 @@ namespace FridgeApp
 
                 while (dataReader.Read())
                 {
+                    //Makes a category of each row in the mysql table and adds it to the list of existing categories
                     Category product = new Category
                     {
-                        Name = dataReader.GetString("Naam"),
-                        GeneralDaysToExpire = dataReader.GetInt32("General_exp_date")
+                        Name = dataReader.GetString("Name"),
+                        GeneralDaysToExpire = dataReader.GetInt32("General_exp_time")
                     };
                     categories.Add(product);
                 }
@@ -132,11 +200,16 @@ namespace FridgeApp
             return categories;
         }
 
+        /// <summary>
+        /// Gets the products from the 'food' table
+        /// </summary>
+        /// <returns></returns>
         public List<ProductInHouse> GetProductsInHouse()
         {
             List<ProductInHouse> productsInHouse = new List<ProductInHouse>();
             try
             {
+                //Connect to database
                 Connect();
 
                 string getString = @"SELECT * FROM food";
@@ -145,9 +218,10 @@ namespace FridgeApp
 
                 while (dataReader.Read())
                 {
+                    //Makes a productinhouse of each row in the mysql table and adds it to the list of existing products in the house
                     ProductInHouse productInHouse = new ProductInHouse
                     {
-                        ID = dataReader.GetChar("ID"),
+                        ID = dataReader.GetString("ID"),
                         Add_date = dataReader.GetDateTime("Add_date"),
                         Product = dataReader.GetString("Product")
                     };
@@ -165,165 +239,5 @@ namespace FridgeApp
             }
             return productsInHouse;
         }
-        
-        /*public List<string>[] Get(string tableName, params string[] columns)
-        {
-            string sql = "SELECT ";
-            if (columns.Count() < 1)
-            {
-                sql += "*";
-            }
-            else
-            {
-                foreach (string column in columns)
-                {
-                    sql += column + ", ";
-                }
-                sql = sql.Substring(0, sql.Length - 2);
-            }
-            sql += " FROM " + tableName;
-            return Query(sql);
-        }*/
-
-        public void NonQuery(string sql, params string[] values)
-        {
-            if (Connect())
-            {
-                MySqlCommand cmd = new MySqlCommand(sql, Connection);
-                cmd.Prepare();
-                if (values != null && values.Length != 0)
-                {
-                    for (int i = 0; i < values.Length; i++)
-                    {
-                        cmd.Parameters.Add(new MySqlParameter("@val" + i, values[i]));
-                    }
-                }
-                cmd.ExecuteNonQuery();
-                Close();
-                Logger.GetInstance().Log("Successfully executed command.");
-            }
-        }
-
-        public DatabaseController()
-        {
-            Connection = null;
-            Connect();
-        }
-
-        /// <summary>
-        /// Adds the scanned or manually added product to the fridge
-        /// </summary>
-        public bool Addproducttofridge(dynamic form)
-        {
-            MySqlDataReader reader;       
-            string queryfridge = "INSERT INTO food (`Add_date`, `Product`) VALUES(curdate()," + form.barcodetxt.Text + ")";
-
-            MySqlCommand cmd = new MySqlCommand(queryfridge, Connection);
-
-            try
-            {
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-
-                }
-                
-                reader.Close();
-                return true;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Graag de verplichte velden vullen.");
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Reads data from query in Connect
-        /// </summary>
-        /// <param name="cmd">the query</param>
-        /// <param name="form">fifoform</param>
-        private void Readdata(MySqlCommand cmd, Fifoform form)
-        {
-            var reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                var listitem = new string[reader.FieldCount];
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    if (i == 2) listitem[i] = reader.GetDateTime(i).ToShortDateString();
-                    listitem[i] = reader.GetString(i);
-                }
-                ListViewItem test = new ListViewItem(listitem);
-                form.contentlist.Items.Add(test);
-            }
-            reader.Close();
-        }
-
-        /// <summary>
-        /// Connects to the fifo db and only reads out info of the products
-        /// </summary>
-        public void GetProducts(DatabaseController database, Fifoform form)
-        {
-            if (database.IsConnected())
-            {
-                string query = "SELECT p.Name, p.Category, p.Expiration_time, DATEDIFF(curdate(), Add_date) as daysinfridge, f.ID FROM food as f join product p on p.ID = f.Product order by p.Expiration_time, daysinfridge desc";
-                var cmd = new MySqlCommand(query, database.Connection);
-                Readdata(cmd, form);
-            }
-        }
-
-        /// <summary>
-        /// Deletes selected data from the food tabel in the database
-        /// </summary>
-        /// <param name="item">ID of selected item</param>
-        /// <param name="database">the database connection</param>
-        public void Deletedata(ListViewItem.ListViewSubItem item, DatabaseController database)
-        {
-            //sql query to delete the item with the given ID
-            string query = "delete from food where ID = @ID";
-            MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-            cmd.Parameters.AddWithValue("@ID", item.Text);
-
-            MySqlDataReader reader;
-            try
-            {
-                reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-
-                }
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Allows user to edit info from existing products
-        /// </summary>
-        private void Updatedate()
-        {
-
-            /* string query = "update fridge"; //TODO
-             MySqlCommand cmd = new MySqlCommand(query, database.Connection);
-             MySqlDataReader reader;
-             try
-             {
-                 reader = cmd.ExecuteReader();
-                 while (reader.Read())
-                 {
-
-                 }
-                 reader.Close();
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-             }*/
-        } //TODO welp kelvin
     }
 }

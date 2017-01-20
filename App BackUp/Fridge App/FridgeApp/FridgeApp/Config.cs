@@ -13,6 +13,10 @@ namespace FridgeApp
         private static string User = "root";
         private static string Password = "1234";
 
+        /// <summary>
+        /// Creates the correct string to connect to the database
+        /// </summary>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
             return string.Format("Server={0};Database={1};Uid={2};Pwd={3}", Server, Database, User, Password);

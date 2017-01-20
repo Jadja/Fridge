@@ -1,2 +1,3 @@
-Cannot connect to server.  Contact administrator
-Cannot connect to server.  Contact administrator
+Closed Connection
+Closed Connection
+Closed Connection

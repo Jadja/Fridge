@@ -53,23 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Addingform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Addingform.Designer.cs">
-      <DependentUpon>Addingform.cs</DependentUpon>
-    </Compile>
     <Compile Include="Config.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="DatabaseController.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductInHouse.cs" />
-    <Compile Include="Fifoform.cs">
+    <Compile Include="FifoApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Fifoform.Designer.cs">
-      <DependentUpon>Fifoform.cs</DependentUpon>
+    <Compile Include="FifoApp.Designer.cs">
+      <DependentUpon>FifoApp.cs</DependentUpon>
     </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
@@ -79,29 +73,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProductsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ProductsView.Designer.cs">
+      <DependentUpon>ProductsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScanView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ScanView.Designer.cs">
+      <DependentUpon>ScanView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Addingform.resx">
-      <DependentUpon>Addingform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Fifoform.resx">
-      <DependentUpon>Fifoform.cs</DependentUpon>
+    <EmbeddedResource Include="FifoApp.resx">
+      <DependentUpon>FifoApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProductsView.resx">
+      <DependentUpon>ProductsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ScanView.resx">
+      <DependentUpon>ScanView.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Barcode-icon.ico" />
+    <Content Include="Content\logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
